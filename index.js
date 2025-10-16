@@ -11,9 +11,33 @@
  * - firstUniqChar("aabb") → -1
  */
 
-const firstUniqChar = (s) => {
+const firstUniqChar = (str) => {
+  const frequency = {};
 
+  // Step 1: Count how many times each letter appears
+  for (let i = 0; i < str.length; i++) {
+    const letter = str[i];
+    if (frequency[letter] === undefined) {
+      frequency[letter] = 1; // first time we see this letter
+    } else {
+      frequency[letter]++; // already seen, so add 1
+    }
+  }
+
+  // Step 2: Find the first letter that appears only once
+  for (let i = 0; i < str.length; i++) {
+    const letter = str[i];
+    if (frequency[letter] === 1) {
+      return i; // return its index
+    }
+  }
+
+  // Step 3: If no unique letters, return -1
+  return -1;
 };
+
+module.exports = { firstUniqChar };
+
 
 // Export the function for testing
 module.exports = { firstUniqChar };
